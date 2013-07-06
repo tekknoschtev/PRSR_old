@@ -4,14 +4,31 @@
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <style>
+            html,body,container {margin: 0; padding: 0; height: 100%}
+            textarea {height: 500px;}
+        </style>
     </head>
     <body class="container">
         <div class="row">
             <div class="span6">
                 <form id="yamlForm">
                     <label for="yamlText">YAML Text</label>
-                    <textarea id="yamlText" class="span6" name="yamlText"></textarea><br />
-                    <input type="submit" value="Format">
+                    <textarea id="yamlText" class="span6" name="yamlText"></textarea>
+                    <label for="testType">Test Type(s)</label>
+                    <select id="testType" name="testType">
+                        <option value="testSteps">Test Steps</option>
+                        <option value="regressionSteps">Regression Steps</option>
+                        <option value="both">Both</option>
+                    </select>
+                    <label for="testType">Format</label>
+                    <select id="format" name="format">
+                        <option value="wiki">Wiki</option>
+                        <option value="jira">JIRA</option>
+                        <option value="csv">CSV</option>
+                    </select>
+                    <br />
+                    <input class="btn" type="submit" value="Format">
                 </form>
             </div>
             <div class="span6">
@@ -34,7 +51,6 @@
                 var inputs = form.find("textarea");
                 
                 var serializedData = form.serialize();
-                console.log(serializedData);
                 
                 inputs.prop("disabled", true);
                 
@@ -46,7 +62,6 @@
                 });
                 
                 request.done(function(response, textStatus, jqXHR) {
-                    console.log(response);
                     $('textarea#formattedText').val(response.data);
                 });
                 
