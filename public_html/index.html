@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    </head>
+    <body class="container">
+        <div class="row">
+            <div class="span6">
+                <form id="yamlForm">
+                    <label for="yamlText">YAML Text</label>
+                    <textarea id="yamlText" class="span6" name="yamlText"></textarea><br />
+                    <input type="submit" value="Format">
+                </form>
+            </div>
+            <div class="span6">
+                <label for="formattedText">Formatted Text</label>
+                <textarea id="formattedText" class="span6"></textarea>
+            </div>
+        </div>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>
+            var request;
+            
+            $("#yamlForm").submit(function(event) {
+                if(request) {
+                    request.abort();
+                }
+                
+                var form = $(this);
+                
+                var inputs = form.find("textarea");
+                
+                var serializedData = form.serialize();
+                console.log(serializedData);
+                
+                inputs.prop("disabled", true);
+                
+                request = $.ajax({
+                    url: "./prsr.py",
+                    type: "post",
+                    datatype: "json",
+                    data: serializedData
+                });
+                
+                request.done(function(response, textStatus, jqXHR) {
+                    console.log(response);
+                    $('textarea#formattedText').val(response.data);
+                });
+                
+                request.fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("The following error occured: " + textStatus, errorThrown );
+                });
+                
+                request.always(function() {
+                    inputs.prop("disabled", false);
+                });
+                
+                event.preventDefault();
+            });
+        </script>
+    </body>
+</html>
+<!--
+        <script>
+
+            $(function()
+            {
+                $('#clickme').click(function(){
+                    console.log('Im going to start processing');
+
+                    $.ajax({
+                        url: "./test.py",
+                        type: "post",
+                        datatype:"json",
+                        data: {'key':'value','key2':'value2'},
+                        success: function(response){
+                            console.log(response);
+//                            console.log(response.keys);
+                        }
+                    });
+                });
+            });
+
+        </script>-->
