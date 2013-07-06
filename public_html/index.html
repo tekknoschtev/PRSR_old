@@ -4,16 +4,30 @@
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Chango' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Orbitron:400,500' rel='stylesheet' type='text/css'>
         <style>
-            html,body,container {margin: 0; padding: 0; height: 100%}
-            textarea {height: 500px;}
+            html,body{margin: 0; padding: 0; height: 100%; width: 100%;}
+            .container {width: 100%; color: whitesmoke;text-align: center;}
+            textarea {height: 300px;background-color: #A6D7E3;border: none;font-weight: 600;white-space: pre; word-wrap: normal;}
+            .header {background-color:#02779E;padding: 10px;height:10%;}
+            .logo {font-size: 90px;}
+            label, .logo {font-family: 'Orbitron', sans-serif; padding:20px;text-shadow: 2px 2px 0px #000,3px 3px 1px #444;}
+            .inputBox {font-size: 40px;}
+            .textboxes {padding-left: 10px;background-color:#02779E;text-align: center;height: 80%;}
+            .footer {padding-left: 10px;background-color:#72939D;height:10%;}
         </style>
     </head>
     <body class="container">
-        <div class="row">
+        <div class="row header">
+            <div class="span12">
+                <p class="logo">PRSR</p>
+            </div>
+        </div>
+        <div class="row textboxes">
             <div class="span6">
                 <form id="yamlForm">
-                    <label for="yamlText">YAML Text</label>
+                    <label for="yamlText" class="inputBox">YAML Text</label>
                     <textarea id="yamlText" class="span6" name="yamlText"></textarea>
                     <label for="testType">Test Type(s)</label>
                     <select id="testType" name="testType">
@@ -32,8 +46,14 @@
                 </form>
             </div>
             <div class="span6">
-                <label for="formattedText">Formatted Text</label>
+                <label for="formattedText" class="inputBox">Formatted Text</label>
                 <textarea id="formattedText" class="span6"></textarea>
+            </div>
+        </div>
+            <div class="row footer">
+                <div class="span12">
+                    <p>Created by Stephen Schroeder (@tekknoschtev)</p>
+                </div>
             </div>
         </div>
         

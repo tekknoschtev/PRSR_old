@@ -7,7 +7,7 @@ import yaml
 
 def _buildWikiTestPlan(yamlText, testTypes):
     markup = ''
-    markup += '// ' + str(yamlText['description']['jiraId'] or 'None') + '\n'
+    markup += '// ' + str(yamlText['description']['extrnId'] or 'None') + '\n'
     for category in yamlText['testPlan']:
         if category['category']['name']:
             markup += '^ ' + str(category['category']['name'] or 'None') + '\n'
@@ -21,7 +21,7 @@ def _buildWikiTestPlan(yamlText, testTypes):
 
 def _buildJiraTestPlan(yamlText, testTypes):
     markup = ''
-    markup += '|| ' + str(yamlText['description']['jiraId'] or 'None') + '|| ||' + '\n'
+    markup += '|| ' + str(yamlText['description']['extrnId'] or 'None') + '|| ||' + '\n'
     for category in yamlText['testPlan']:
         if category['category']['name']:
             markup += '|| ' + str(category['category']['name'] or 'None') + '|| ||' + '\n'
@@ -36,7 +36,7 @@ def _buildJiraTestPlan(yamlText, testTypes):
 
 def _buildCsvTestPlan(yamlText, testTypes):
     markup = ''
-    markup += '"' + str(yamlText['description']['jiraId'] or 'None') + '"\n'
+    markup += '"' + str(yamlText['description']['extrnId'] or 'None') + '"\n'
     markup += '"Setup","Action","Expected Outcome"\n'
     for category in yamlText['testPlan']:
         if category['category']['name']:
