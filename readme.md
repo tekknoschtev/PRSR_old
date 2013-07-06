@@ -20,7 +20,7 @@ Usage
 Currently, this tool only functions for a specifically formatted test case.  A
 simple example is listed below:
 
-> # Title 
+> \# Title 
 > description:
 >     extrnId: Any external system ID.  We use JIRA for tracking, so we use JIRA ID
 >     softwareChange: A brief description of the software change being tested
